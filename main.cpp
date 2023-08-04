@@ -11,8 +11,8 @@
 
 void myFunction(MyStateMachine *machine)
 {
-  int count=0;
-  while(true) {
+  int count=10;
+  while(--count) {
     std::cout<<"Thread is running...\n";
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
@@ -20,10 +20,9 @@ void myFunction(MyStateMachine *machine)
       machine->submitEvent("start");
     else
       machine->submitEvent("stop");
-    
-    count++;
   }
-  
+
+  QCoreApplication::quit();
 }
 
 int main(int argc, char *argv[])
@@ -36,6 +35,10 @@ int main(int argc, char *argv[])
 
   std::thread t1(myFunction, &stateMachine);
 
-  return app.exec();
+  int ret=app.exec();
+
+  t1.join();
+
+  return ret;
   
 }
