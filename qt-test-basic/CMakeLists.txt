@@ -4,14 +4,18 @@ set (project-name hello-scxml)
 project (${project-name})
 
 find_package(Qt6 COMPONENTS Scxml Core REQUIRED)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOMOC ON)
 
 # set up our program
-add_executable(${project-name})
- 
+
+add_executable(${project-name} MyDataModel.h )
 # declare our source files
-target_sources(${project-name} PRIVATE main.cpp)
+file(GLOB_RECURSE COMMON_SOURCE "*.h" "*.cpp")
+
 
 target_link_libraries(${project-name} PRIVATE Qt6::Core Qt6::Scxml)
 
-qt6_add_statecharts(${project-name} MyStateMachine.scxml)
+target_sources(${project-name} PUBLIC main.cpp MyDataModel.h MyDataModel.cpp)
 
+qt6_add_statecharts(${project-name} MyStateMachine.scxml)

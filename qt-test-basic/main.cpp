@@ -2,8 +2,9 @@
 #include <QScxmlStateMachine>
 #include <QDebug>
 
-#include <iostream>
 
+#include <iostream>
+#include "MyDataModel.h"
 #include "MyStateMachine.h"
 
 #include <thread>
@@ -28,8 +29,9 @@ void myFunction(MyStateMachine *machine)
 int main(int argc, char *argv[])
 {
   QCoreApplication app(argc, argv);
-
+  MyDataModel dataModel;
   MyStateMachine stateMachine;
+  stateMachine.setDataModel(&dataModel);
 
   stateMachine.start();
 
