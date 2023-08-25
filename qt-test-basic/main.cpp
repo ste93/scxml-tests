@@ -18,9 +18,17 @@ void myFunction(MyStateMachine *machine)
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
     if (count%2==0)
-      machine->submitEvent("start");
+    {
+      machine->submitEvent("start", QVariantMap({
+        {"topic", "blah"}
+      }));
+    }  
     else
-      machine->submitEvent("stop");
+    {
+      machine->submitEvent("stop", QVariantMap({
+        {"topic", "asdf"}
+      }));
+    }
   }
 
   QCoreApplication::quit();

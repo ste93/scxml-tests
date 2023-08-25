@@ -5,18 +5,22 @@
   datamodel="cplusplus:MyDataModel:MyDataModel.h"
   xmlns="http://www.w3.org/2005/07/scxml">
   <state id="idle">
-
-		
+    <onentry>
+      <script>
+        topic = eventData().value(QStringLiteral(&quot;topic&quot;)).toString();
+        qDebug() &lt;&lt; "entering idle" &lt;&lt; topic;
+      </script>
+    </onentry>
     <transition event="start" target="running"/>
-
   </state>
 
   <state id="running">
-
-
-
-   <transition event="stop" target="idle"/>
-
+    <onentry>
+      <script>
+        qDebug() &lt;&lt; "entering running";
+      </script>
+    </onentry>  
+    <transition event="stop" target="idle"/>
   </state>
 </scxml>
 
