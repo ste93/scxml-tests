@@ -1,4 +1,9 @@
-<scxml initial="idle" version="1.0" xmlns="http://www.w3.org/2005/07/scxml">
+<scxml 
+  initial="idle" 
+  version="1.0" 
+  name="MyStateMachine"
+  datamodel="cplusplus:MyDataModel:MyDataModel.h"
+  xmlns="http://www.w3.org/2005/07/scxml">
   <state id="idle">
     <onentry>
 	<log expr="State is idle" label="INFO"/>
