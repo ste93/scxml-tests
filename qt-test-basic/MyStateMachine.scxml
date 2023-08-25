@@ -5,9 +5,7 @@
   datamodel="cplusplus:MyDataModel:MyDataModel.h"
   xmlns="http://www.w3.org/2005/07/scxml">
   <state id="idle">
-    <onentry>
-	<log expr="State is idle" label="INFO"/>
-    </onentry>
+
 		
     <transition event="start" target="running"/>
 
@@ -15,9 +13,7 @@
 
   <state id="running">
 
-   <onentry>
-	<log expr="State is running" label="INFO"/>
-   </onentry>
+
 
    <transition event="stop" target="idle"/>
 
